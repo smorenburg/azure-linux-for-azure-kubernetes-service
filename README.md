@@ -1,27 +1,4 @@
 # Azure Linux for Azure Kubernetes Service
+What is the best operating system for your container workloads running on Azure Kubernetes Service? Let's find out!
 
-## Deploying the resources using Terraform
-
-Set the location variable.
-
-```bash
-export TF_VAR_location="northeurope"
-```
-
-Change into the `terraform` directory.
-
-```bash
-cd terraform
-```
-
-Initialize Terraform.
-
-```bash
-terraform init
-```
-
-Deploy the resources.
-
-```bash
-terraform apply -auto-approve
-```
+This repository is part of [Azure Linux for Azure Kubernetes Service](https://robino.io/azure-linux-for-azure-kubernetes-service/ "Azure Linux for Azure Kubernetes Service") blog posts.

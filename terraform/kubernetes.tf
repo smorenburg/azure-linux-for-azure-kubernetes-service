@@ -24,7 +24,7 @@ resource "azurerm_kubernetes_cluster" "default" {
     vm_size                      = var.kubernetes_cluster_node_pool_system_vm_size
     os_disk_size_gb              = var.kubernetes_cluster_node_pool_system_os_disk_size_gb
     os_disk_type                 = "Ephemeral"
-    os_sku                       = var.os_sku
+    os_sku                       = var.kubernetes_cluster_node_pool_system_os_sku
     only_critical_addons_enabled = true
     temporary_name_for_rotation  = "temp"
     vnet_subnet_id               = azurerm_subnet.aks.id
@@ -78,7 +78,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "user" {
   vm_size               = var.kubernetes_cluster_node_pool_user_vm_size
   os_disk_size_gb       = var.kubernetes_cluster_node_pool_user_os_disk_size_gb
   os_disk_type          = "Ephemeral"
-  os_sku                = var.os_sku
+  os_sku                = var.kubernetes_cluster_node_pool_user_os_sku
   vnet_subnet_id        = azurerm_subnet.aks.id
   zones                 = ["1", "2", "3"]
   enable_auto_scaling   = true

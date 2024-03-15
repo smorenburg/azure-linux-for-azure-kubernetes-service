@@ -6,13 +6,17 @@ resource "azurerm_kubernetes_cluster" "default" {
   node_resource_group       = "rg-aks-${local.suffix}"
   dns_prefix                = "aks-${local.suffix}"
   sku_tier                  = var.kubernetes_cluster_sku_tier
+  azure_policy_enabled      = true
   local_account_disabled    = true
   automatic_channel_upgrade = "patch"
+  oidc_issuer_enabled       = true
+  workload_identity_enabled = true
 
   network_profile {
     network_plugin      = "azure"
     network_plugin_mode = "overlay"
-    network_policy      = "azure"
+    ebpf_data_plane     = "cilium"
+    network_policy      = "cilium"
   }
 
   default_node_pool {
@@ -52,6 +56,18 @@ resource "azurerm_kubernetes_cluster" "default" {
 
   api_server_access_profile {
     authorized_ip_ranges = local.authorized_ip_ranges
+  }
+
+  key_vault_secrets_provider {
+    secret_rotation_enabled = true
+  }
+
+  oms_agent {
+    log_analytics_workspace_id = azurerm_log_analytics_workspace.default.id
+  }
+
+  microsoft_defender {
+    log_analytics_workspace_id = azurerm_log_analytics_workspace.default.id
   }
 }
 

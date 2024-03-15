@@ -2,10 +2,9 @@
 
 ## Deploying the resources using Terraform
 
-Set the variables.
+Set the location variable.
 
 ```bash
-export TF_VAR_app="azlx"
 export TF_VAR_location="northeurope"
 ```
 

@@ -1,6 +1,7 @@
 variable "app" {
   description = "Required. The name of the application."
   type        = string
+  default     = "azlx"
 }
 
 variable "location" {

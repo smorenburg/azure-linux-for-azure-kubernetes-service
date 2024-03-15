@@ -6,6 +6,7 @@ resource "azurerm_kubernetes_cluster" "default" {
   node_resource_group       = "rg-aks-${local.suffix}"
   dns_prefix                = "aks-${local.suffix}"
   sku_tier                  = var.kubernetes_cluster_sku_tier
+  azure_policy_enabled      = true
   local_account_disabled    = true
   automatic_channel_upgrade = "patch"
 
